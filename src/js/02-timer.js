@@ -49,7 +49,7 @@ const options = {
         if(selectedDates[0] < Date.now()) {
             Notify.failure('Please choose a date in the future');
             userDate = new Date();
-        } else { 
+        } else {
             btnEl.disabled = false;
             btnEl.classList.remove('disabled');
             userDate = selectedDates[0];
@@ -67,7 +67,8 @@ class Timer  {
         if (this.isActive) {
             return;
         }
-    this.isActive = true;
+        this.isActive = true;
+        btnEl.disabled = true;
     this.timerId = setInterval(()=> {
         const currentTime = Date.now();
         const deltaTime = userDate - currentTime;
@@ -78,9 +79,9 @@ class Timer  {
                 hoursEl.textContent = components.hours;
                 daysEl.textContent = components.days;
                 if (deltaTime <= 0) {
-                    this.stop();
+                    this.timerStop();
                     timerDiv.innerHTML = "Time is over!";
-                } 
+                }
     }, 1000)
 
     }
@@ -91,4 +92,7 @@ class Timer  {
 
     const timer = new Timer();
     flatpickr(inputEl, options);
-    btnEl.addEventListener('click', () => timer.timerStart());
+btnEl.addEventListener('click', () => timer.timerStart());
+
+
+
