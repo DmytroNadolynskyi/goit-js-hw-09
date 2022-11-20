@@ -69,6 +69,7 @@ class Timer  {
         }
         this.isActive = true;
         btnEl.disabled = true;
+        inputEl.disabled = true;
     this.timerId = setInterval(()=> {
         const currentTime = Date.now();
         const deltaTime = userDate - currentTime;
@@ -78,9 +79,9 @@ class Timer  {
                 minEl.textContent = components.minutes;
                 hoursEl.textContent = components.hours;
                 daysEl.textContent = components.days;
-                if (deltaTime <= 0) {
+                if (deltaTime <= 1000) {
                     this.timerStop();
-                    timerDiv.innerHTML = "Time is over!";
+                    // timerDiv.innerHTML = "Time is over!";
                 }
     }, 1000)
 
